@@ -1,5 +1,6 @@
 package ua.vslobo.examples.layered.architecture.mock;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ExpenseDTO {
@@ -12,6 +13,10 @@ public class ExpenseDTO {
     }
 
     public List<String> getTypes() {
+        return null;
+    }
+
+    public LocalDateTime getDate() {
         return null;
     }
 }

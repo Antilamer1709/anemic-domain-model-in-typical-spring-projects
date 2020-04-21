@@ -1,15 +1,17 @@
 package ua.vslobo.examples.layered.architecture.mock;
 
+import java.util.List;
+
 public class ExpenseDTO {
-    public Object getPrice() {
+    public Integer getPrice() {
         return null;
     }
 
-    public Object getComment() {
+    public String getComment() {
         return null;
     }
 
-    public Object getTypes() {
+    public List<String> getTypes() {
         return null;
     }
 }

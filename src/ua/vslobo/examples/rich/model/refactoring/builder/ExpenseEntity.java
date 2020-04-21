@@ -1,4 +1,4 @@
-package ua.vslobo.examples.rich.model.builder;
+package ua.vslobo.examples.rich.model.refactoring.builder;
 
 import lombok.Data;
 import org.hibernate.annotations.Fetch;

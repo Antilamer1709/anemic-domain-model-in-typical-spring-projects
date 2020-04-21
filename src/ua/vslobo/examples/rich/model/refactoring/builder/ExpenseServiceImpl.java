@@ -1,4 +1,4 @@
-package ua.vslobo.examples.rich.model.builder;
+package ua.vslobo.examples.rich.model.refactoring.builder;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,7 @@ import ua.vslobo.examples.layered.architecture.mock.AuthenticationBO;
 import ua.vslobo.examples.layered.architecture.mock.ExpenseDTO;
 import ua.vslobo.examples.layered.architecture.mock.ExpenseService;
 import ua.vslobo.examples.layered.architecture.mock.UserEntity;
-import ua.vslobo.examples.rich.model.builder.mock.ExpenseRepo;
+import ua.vslobo.examples.rich.model.refactoring.builder.mock.ExpenseRepo;
 import ua.vslobo.examples.rich.model.extreme.mock.ExpenseTypeDictEntity;
 
 import java.time.LocalDateTime;

@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.vslobo.examples.layered.architecture.mock.AuthenticationBO;
 import ua.vslobo.examples.layered.architecture.mock.ExpenseDTO;
-import ua.vslobo.examples.layered.architecture.mock.ExpenseService;
 import ua.vslobo.examples.layered.architecture.mock.UserEntity;
 import ua.vslobo.examples.rich.model.refactoring.builder.mock.ExpenseRepo;
 import ua.vslobo.examples.rich.model.extreme.mock.ExpenseTypeDictEntity;
+import ua.vslobo.examples.rich.model.refactoring.builder.mock.ExpenseService;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

@@ -79,6 +79,7 @@ public class ReplaceConditionalWithPolymorphism {
             return getBasicPrice() * calculateCasualDiscount();
         }
 
+        // User can have his own discount
         private Integer calculateCasualDiscount() {
             return price * (discount + user.getUserDiscount());
         }
@@ -92,6 +93,8 @@ public class ReplaceConditionalWithPolymorphism {
             // get the wholesale price
             return getBasicPrice() * amount * calculateWholesaleDiscount();
         }
+
+        // Wholesale discount depends from amount. The more you buy, the bigger is the discount
         private Integer calculateWholesaleDiscount() {
             return (amount / 1000) + discount;
         }

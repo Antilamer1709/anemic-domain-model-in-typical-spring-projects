@@ -4,11 +4,11 @@ import ua.vslobo.examples.layered.architecture.mock.UserEntity;
 import lombok.Data;
 import javax.persistence.*;
 
-// contains all shared fields and methods
+// Contains all shared fields and methods
 @Entity
 @Table
 @Data
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // we use single table inheritance
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE) // We use single table inheritance
 public abstract class ExpenseEntity {
 
     @Id
@@ -22,9 +22,10 @@ public abstract class ExpenseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     protected UserEntity user;
-    // other common fields
+    // Other common fields
 
 
+    // Common method for all children
     protected Integer getBasicPrice() {
         // get the basic price
         // long computation
@@ -66,7 +67,7 @@ class SaleExpenseEntity extends ExpenseEntity {
         // long computation
         return getBasicPrice() * discount;
     }
-    // other sale specific methods
+    // Other sale specific methods
 }
 
 
@@ -76,7 +77,7 @@ class WholesaleExpenseEntity  extends ExpenseEntity {
 
     @Column
     private Integer amount;
-    // other wholesale specific columns
+    // Other wholesale specific columns
 
     @Override
     public Integer getPrice() {
@@ -89,6 +90,6 @@ class WholesaleExpenseEntity  extends ExpenseEntity {
     private Integer calculateWholesaleDiscount() {
         return amount / 1000;
     }
-    // other wholesale specific methods
+    // Other wholesale specific methods
 
 }

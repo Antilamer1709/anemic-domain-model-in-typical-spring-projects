@@ -14,7 +14,7 @@ public class ReplaceConditionalWithPolymorphism {
         private EntityType type;
 
         // ...
-        Integer getPrice() {
+        public Integer getPrice() {
             switch (type) {
                 case BASIC:
                     return getBasicPrice();
@@ -60,6 +60,8 @@ public class ReplaceConditionalWithPolymorphism {
             // get the basic price
             return price * amount;
         }
+        //...
+        // Other common methods
     }
 
     // Casual expense, which does not have any specific fields or methods

@@ -16,7 +16,7 @@ public class ExpenseServiceImpl implements ExpenseService {
     private ExpenseRepo expenseRepo;
 
     @Autowired
-    private AuthenticationBO authenticationBO;
+    private AuthenticationService authenticationService;
     // Other injected classes
 
 
@@ -36,7 +36,7 @@ public class ExpenseServiceImpl implements ExpenseService {
     // Other methods
 
     private void initExpenseEntity(ExpenseEntity expenseEntity, ExpenseDTO expenseDTO) {
-        UserEntity userEntity = authenticationBO.getLoggedUser();
+        UserEntity userEntity = authenticationService.getLoggedUser();
 
         expenseEntity.setUser(userEntity);
         expenseEntity.setPrice(expenseDTO.getPrice());

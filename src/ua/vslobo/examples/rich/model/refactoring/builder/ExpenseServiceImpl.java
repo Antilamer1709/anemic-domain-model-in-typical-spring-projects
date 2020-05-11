@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.vslobo.examples.layered.architecture.mock.AuthenticationBO;
+import ua.vslobo.examples.layered.architecture.mock.AuthenticationService;
 import ua.vslobo.examples.layered.architecture.mock.ExpenseDTO;
 import ua.vslobo.examples.layered.architecture.mock.UserEntity;
 import ua.vslobo.examples.rich.model.refactoring.builder.mock.ExpenseRepo;
@@ -20,7 +20,7 @@ import java.util.List;
 public class ExpenseServiceImpl implements ExpenseService {
 
     @Autowired
-    private AuthenticationBO authenticationBO;
+    private AuthenticationService authenticationService;
 
     @Autowired
     private ExpenseRepo expenseRepo;
@@ -37,7 +37,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 
     // should not be in service
     private void initExpenseEntity(ExpenseEntity expenseEntity, ExpenseDTO expenseDTO) {
-        UserEntity userEntity = authenticationBO.getLoggedUser();
+        UserEntity userEntity = authenticationService.getLoggedUser();
 
         expenseEntity.setUser(userEntity);
         expenseEntity.setPrice(expenseDTO.getPrice());
@@ -61,7 +61,7 @@ public class ExpenseServiceImpl implements ExpenseService {
     private ExpenseEntity createExpenseEntity(ExpenseDTO expenseDTO) {
         return new ExpenseEntity.Builder()
                 .fromDTO(expenseDTO)
-                .withUser(authenticationBO.getLoggedUser())
+                .withUser(authenticationService.getLoggedUser())
                 .withExpenseTypes(findExpenseTypes(expenseDTO.getTypes()))
                 .build();
     }

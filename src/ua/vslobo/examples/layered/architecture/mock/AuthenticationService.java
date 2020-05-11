@@ -1,5 +1,5 @@
 package ua.vslobo.examples.layered.architecture.mock;
 
-public interface AuthenticationBO {
+public interface AuthenticationService {
     UserEntity getLoggedUser();
 }

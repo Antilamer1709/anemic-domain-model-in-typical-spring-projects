@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import ua.vslobo.examples.anemic.model.mock.ExpenseTypeDictEntity;
-import ua.vslobo.examples.layered.architecture.mock.AuthenticationBO;
+import ua.vslobo.examples.layered.architecture.mock.AuthenticationService;
 import ua.vslobo.examples.layered.architecture.mock.ExpenseDTO;
 import ua.vslobo.examples.layered.architecture.mock.UserEntity;
 import ua.vslobo.examples.rich.model.extreme.mock.ExpenseRepo;
@@ -44,7 +44,7 @@ public class ExpenseEntity {
     @Autowired // model has dependency from other layers and from infrastructure
     private ExpenseRepo expenseRepo;
     @Autowired
-    private AuthenticationBO authenticationBO;
+    private AuthenticationService authenticationService;
     @Autowired
     private UserRepo userRepo;
     @Autowired
@@ -67,7 +67,7 @@ public class ExpenseEntity {
     }
 
     private void initExpenseEntity(ExpenseEntity expenseEntity, ExpenseDTO expenseDTO) {
-        UserEntity userEntity = authenticationBO.getLoggedUser();
+        UserEntity userEntity = authenticationService.getLoggedUser();
 
         expenseEntity.setUser(userEntity);
         expenseEntity.setPrice(expenseDTO.getPrice());

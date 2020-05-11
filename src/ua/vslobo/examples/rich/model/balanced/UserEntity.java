@@ -23,7 +23,12 @@ public class UserEntity {
 
     @OneToMany(mappedBy="user")
     private List<ExpenseEntity> expenses;
-    // other fields
+    // Other fields
+
+    // Now we don't have any injected by Spring classes here
+    // All infrastructure logic is placed in the Service layer
+    // But now, the model is the perfect place to put Business Logic methods that operate on the class' fields
+
 
     public Integer calculateAllExpensesPrice() {
         return expenses.stream()

@@ -1,6 +1,5 @@
 package ua.vslobo.examples.rich.model.refactoring.builder;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class ExpenseServiceImpl implements ExpenseService {
 
     @Autowired
@@ -35,7 +33,7 @@ public class ExpenseServiceImpl implements ExpenseService {
         expenseRepo.save(expenseEntity);
     }
 
-    // should not be in service
+    // this ugly method should not be in service
     private void initExpenseEntity(ExpenseEntity expenseEntity, ExpenseDTO expenseDTO) {
         UserEntity userEntity = authenticationService.getLoggedUser();
 
@@ -46,8 +44,9 @@ public class ExpenseServiceImpl implements ExpenseService {
             expenseEntity.setDate(expenseDTO.getDate());
         else
             expenseEntity.setDate(LocalDateTime.now());
-        expenseEntity.setExpenseTypeDict(findExpenseTypes(expenseDTO.getTypes()));
+        expenseEntity.setExpenseTypeDict(findExpenseTypes(expenseDTO.getTypes())); // request to the DB
     }
+
 
 
     // After
@@ -62,7 +61,7 @@ public class ExpenseServiceImpl implements ExpenseService {
         return new ExpenseEntity.Builder()
                 .fromDTO(expenseDTO)
                 .withUser(authenticationService.getLoggedUser())
-                .withExpenseTypes(findExpenseTypes(expenseDTO.getTypes()))
+                .withExpenseTypes(findExpenseTypes(expenseDTO.getTypes())) // request to the DB
                 .build();
     }
 
@@ -71,7 +70,7 @@ public class ExpenseServiceImpl implements ExpenseService {
     // common
     private List<ExpenseTypeDictEntity> findExpenseTypes(List<String> types) {
         List<ExpenseTypeDictEntity> list = new ArrayList<>();
-        // find types
+        // find types in the DB
         return list;
     }
 

@@ -1,8 +1,6 @@
 package ua.vslobo.examples.rich.model.refactoring.builder;
 
 import lombok.Data;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import ua.vslobo.examples.layered.architecture.mock.ExpenseDTO;
 import ua.vslobo.examples.layered.architecture.mock.UserEntity;
 import ua.vslobo.examples.rich.model.extreme.mock.ExpenseTypeDictEntity;
@@ -38,11 +36,11 @@ public class ExpenseEntity {
     @JoinTable(name = "expense_to_expense_type_dict", schema = "expenses",
             joinColumns = @JoinColumn(name = "expense_id"),
             inverseJoinColumns = @JoinColumn(name = "expense_type_id"))
-    @Fetch(FetchMode.SUBSELECT)
     private List<ExpenseTypeDictEntity> expenseTypeDict;
 
 
 
+    // Could be in separate file or package
     public static class Builder {
 
         private ExpenseEntity expense;

@@ -5,6 +5,8 @@ import ua.vslobo.examples.rich.model.extreme.ExpenseEntity;
 
 import javax.persistence.*;
 import java.util.List;
+// just mock method. In the real class it won't be static
+import static ua.vslobo.examples.rich.model.refactoring.replace.method.with.method.object.mock.Utils.*;
 
 @Data
 @Entity
@@ -26,9 +28,24 @@ public class UserEntity {
     private List<ExpenseEntity> expenses;
     // other fields
 
-    // Before, very long computation was here, in UserEntity class
-    // now we have moved it to another class
+
+    // Before
+    public Integer calculateAllExpensesPriceBefore() {
+        // A very long computation with many private intermediate methods
+        //... private methods in this class
+         initDiscount();
+         validateExpenses();
+         filterExpenses();
+        //...
+        return calculateFinalPrice();
+    }
+    // Private methods
+    // ...
+
+
+    // After
     public Integer calculateAllExpensesPrice() {
+        // We have moved it to another class
         return new ExpensesPriceCalculator(this).compute();
     }
 
@@ -61,15 +78,6 @@ class ExpensesPriceCalculator {
         return calculateFinalPrice();
     }
 
-
-    private void initDiscount() {
-    }
-    private void validateExpenses() {
-    }
-    private void filterExpenses() {
-    }
-    private Integer calculateFinalPrice() {
-        return price;
-    }
+    // Private methods
 
 }

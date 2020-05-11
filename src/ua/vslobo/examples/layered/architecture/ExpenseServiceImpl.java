@@ -1,6 +1,5 @@
 package ua.vslobo.examples.layered.architecture;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.vslobo.examples.layered.architecture.mock.*;
@@ -8,13 +7,13 @@ import ua.vslobo.examples.layered.architecture.mock.*;
 import java.time.LocalDateTime;
 
 @Service
-@RequiredArgsConstructor
 public class ExpenseServiceImpl implements ExpenseService {
 
-    // Consider them as @Autowired
-    private final ExpenseRepo expenseRepo;
-    private final AuthenticationBO authenticationBO;
-    // other injected classes
+    // Field injection is not the best thing to do, but for the simplicity purpose in the example it is OK
+    // Normally, we would use a constructor injection
+    private ExpenseRepo expenseRepo;
+    private AuthenticationBO authenticationBO;
+    // Other injected classes
 
     @Override
     @Transactional
@@ -28,7 +27,7 @@ public class ExpenseServiceImpl implements ExpenseService {
     private void validateExpense(ExpenseDTO expenseDTO) {
         //validations
     }
-    // other methods
+    // Other methods
 
     private void initExpenseEntity(ExpenseEntity expenseEntity, ExpenseDTO expenseDTO) {
         UserEntity userEntity = authenticationBO.getLoggedUser();
@@ -41,8 +40,8 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     private void initExpenseTypes(ExpenseEntity expenseEntity, Object types) {
-        // other initializations
+        // Other initializations
     }
-    // other methods
+    // Other methods
 
 }

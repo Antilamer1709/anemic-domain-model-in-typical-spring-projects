@@ -37,19 +37,23 @@ public class ExpenseEntity {
     @Column
     private UserEntity user;
 
-    List<ExpenseTypeDictEntity> expenseTypeDict;
-    // other columns
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "expense_to_expense_type_dict",
+            joinColumns = @JoinColumn(name = "expense_id"),
+            inverseJoinColumns = @JoinColumn(name = "expense_type_id"))
+    private List<ExpenseTypeDictEntity> expenseTypeDict;
+    // Other columns
 
 
-    @Autowired // model has dependency from other layers and from infrastructure
+    @Autowired // The model has dependency from other layers and from infrastructure
     private ExpenseRepo expenseRepo;
-    @Autowired
-    private AuthenticationService authenticationService;
     @Autowired
     private UserRepo userRepo;
     @Autowired
     private ExpenseTypeDictRepo expenseTypeDictRepo;
-    // other injections
+    @Autowired
+    private AuthenticationService authenticationService;
+    // Other injections
 
 
 
@@ -63,7 +67,7 @@ public class ExpenseEntity {
     }
 
     private void validateExpense(ExpenseDTO expenseDTO) {
-        // validations
+        // validations (DTO, permissions, database, etc)
     }
 
     private void initExpenseEntity(ExpenseEntity expenseEntity, ExpenseDTO expenseDTO) {
@@ -77,15 +81,15 @@ public class ExpenseEntity {
     }
 
     private void initExpenseTypes(ExpenseEntity expenseEntity, List<String> types) {
-        // model persists to a DB other objects!
+        // Model knows about datasource!
         List<ExpenseTypeDictEntity> expenseTypes = new ArrayList<>();
 
         types.forEach(x -> {
-            ExpenseTypeDictEntity typeDict = expenseTypeDictRepo
+            ExpenseTypeDictEntity typeDict = expenseTypeDictRepo // runs queries
                     .findByNameIgnoreCase(x.trim())
                     .orElseGet(() -> createExpenseTypeDict(x));
             typeDict.setUsedCount(typeDict.getUsedCount() + 1);
-            typeDict = expenseTypeDictRepo.save(typeDict);
+            typeDict = expenseTypeDictRepo.save(typeDict); // persists to a DB other objects!
             expenseTypes.add(typeDict);
         });
 

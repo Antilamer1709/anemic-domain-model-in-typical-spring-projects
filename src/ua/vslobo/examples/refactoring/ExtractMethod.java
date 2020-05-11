@@ -33,6 +33,7 @@ public class ExtractMethod {
         ExpenseEntity expenseEntity = new ExpenseEntity();
         expenseEntity.setUser(getLoggedUser());
         expenseEntity.setPrice(expenseDTO.getPrice());
+        expenseEntity.setComment(expenseDTO.getComment());
         // other setters
 
         return expenseEntity;

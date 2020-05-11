@@ -17,7 +17,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 
     @Autowired
     private AuthenticationService authenticationService;
-    // Other injected classes
+    // Other injected classes and infrastructure
 
 
     @Override

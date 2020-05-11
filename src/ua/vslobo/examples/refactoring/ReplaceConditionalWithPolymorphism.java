@@ -10,8 +10,8 @@ public class ReplaceConditionalWithPolymorphism {
         private Integer price;
         private Integer amount;
         private Integer discount;
-        private EntityType type;
         private UserEntity user;
+        private EntityType type;
 
         // ...
         Integer getPrice() {
@@ -26,7 +26,7 @@ public class ReplaceConditionalWithPolymorphism {
             throw new RuntimeException("Should be unreachable");
         }
 
-        // imagine that that methods do something really useful and complex
+        // imagine that those methods do something really useful and complex
         private Integer getBasicPrice() {
             return price * amount;
         }
@@ -47,12 +47,13 @@ public class ReplaceConditionalWithPolymorphism {
     // After
     // contains ONLY shared fields and methods
     abstract class ExpenseEntity {
+        // common fields
         protected Integer price;
         protected Integer amount;
         protected Integer discount;
         protected UserEntity user;
 
-        // ...
+        // Every concrete class has to implement it
         public abstract Integer getPrice();
 
         protected Integer getBasicPrice() {

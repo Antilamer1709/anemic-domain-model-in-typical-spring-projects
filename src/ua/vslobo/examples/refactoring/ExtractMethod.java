@@ -9,7 +9,7 @@ import ua.vslobo.examples.layered.architecture.mock.UserEntity;
 public class ExtractMethod {
 
     @Autowired
-    ExpenseRepo expenseRepo;
+    private ExpenseRepo expenseRepo;
 
     // Before
     public void createExpense(ExpenseDTO expenseDTO) {
@@ -17,7 +17,7 @@ public class ExtractMethod {
         expenseEntity.setUser(getLoggedUser());
         expenseEntity.setPrice(expenseDTO.getPrice());
         expenseEntity.setComment(expenseDTO.getComment());
-        // other setters
+        // imagine that there are many other setters
 
         expenseRepo.save(expenseEntity);
     }
@@ -40,7 +40,8 @@ public class ExtractMethod {
 
 
 
-    // Silly method, we need it to compile code
+
+    // Silly mock method, we need it to compile code
     UserEntity getLoggedUser() {
         return new UserEntity();
     }

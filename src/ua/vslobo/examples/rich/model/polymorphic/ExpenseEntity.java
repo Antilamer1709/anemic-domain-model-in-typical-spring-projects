@@ -22,6 +22,7 @@ public abstract class ExpenseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     protected UserEntity user;
+    // ...
     // Other common fields
 
 

@@ -17,7 +17,7 @@ public class ExpenseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Integer id;
-    // other fields
+    // Other fields
 
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -28,5 +28,5 @@ public class ExpenseEntity {
     private List<ExpenseTypeDictEntity> expenseTypeDict;
 
 
-    // other methods
+    // Other methods
 }

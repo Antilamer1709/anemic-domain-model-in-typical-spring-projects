@@ -47,6 +47,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 
     private void initExpenseTypes(ExpenseEntity expenseEntity, Object types) {
         // Other initializations
+        // here we populate the expense with an ExpenseTypes dictionary from DB
     }
     // Other methods
 

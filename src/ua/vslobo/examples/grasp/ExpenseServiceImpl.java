@@ -22,6 +22,8 @@ public class ExpenseServiceImpl implements ExpenseService {
         // Here we create an object
         ExpenseEntity expenseEntity = new ExpenseEntity();
         businessLogicMethod(expenseEntity);
+
+        // Other operations with the expenseEntity
     }
 
     private void businessLogicMethod(ExpenseEntity expenseEntity) {
@@ -34,6 +36,9 @@ public class ExpenseServiceImpl implements ExpenseService {
         // here we use expenseEntity
         anotherService.processExpenseEntity(expenseEntity);
         // As long the AnotherService needs the expenseEntity, it should create and return the ExpenseEntity
+
+        // For the second step, we can refactor the createExpense method,
+        // so it will call the anotherBusinessLogicMethod directly after calling the businessLogicMethod
     }
 
 }

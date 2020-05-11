@@ -12,7 +12,7 @@ import javax.validation.Valid;
 @RequestMapping("api/expense")
 public class ExpenseController {
 
-    // Field injection is not the best thing to do, but for the simplicity purpose in the example it is OK
+    // Field injection is not the best thing to do, but it is OK for the demonstration purpose
     // Normally, we would use a constructor injection
     @Autowired
     private ExpenseService expenseService;

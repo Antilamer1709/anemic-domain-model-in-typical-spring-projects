@@ -1,5 +1,6 @@
 package ua.vslobo.examples.layered.architecture;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.vslobo.examples.layered.architecture.mock.*;
@@ -11,9 +12,13 @@ public class ExpenseServiceImpl implements ExpenseService {
 
     // Field injection is not the best thing to do, but for the simplicity purpose in the example it is OK
     // Normally, we would use a constructor injection
+    @Autowired
     private ExpenseRepo expenseRepo;
+
+    @Autowired
     private AuthenticationBO authenticationBO;
     // Other injected classes
+
 
     @Override
     @Transactional
@@ -25,7 +30,8 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     private void validateExpense(ExpenseDTO expenseDTO) {
-        //validations
+        // Business validations
+        // check for duplicates, etc
     }
     // Other methods
 

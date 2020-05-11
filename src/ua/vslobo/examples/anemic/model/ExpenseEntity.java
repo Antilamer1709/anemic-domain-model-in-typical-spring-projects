@@ -15,6 +15,9 @@ import java.util.List;
 @Table
 public class ExpenseEntity {
 
+    // Example of Anemic Entity
+    // As you can see, there are no business logic methods here
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column

@@ -13,13 +13,13 @@ public class ExpenseServiceImpl implements ExpenseService {
 
     @Autowired
     private AnotherService anotherService;
-    // services and infrastructure
+    // Other injected services and infrastructure
 
 
     @Override
     @Transactional
     public void createExpense(ExpenseDTO expenseDTO) {
-        // here we create an object
+        // Here we create an object
         ExpenseEntity expenseEntity = new ExpenseEntity();
         businessLogicMethod(expenseEntity);
     }
@@ -32,7 +32,8 @@ public class ExpenseServiceImpl implements ExpenseService {
 
     private void anotherBusinessLogicMethod(ExpenseEntity expenseEntity) {
         // here we use expenseEntity
-        anotherService.processExpenseEntity(expenseEntity); // anotherService should create and return the ExpenseEntity
+        anotherService.processExpenseEntity(expenseEntity);
+        // As long the AnotherService needs the expenseEntity, it should create and return the ExpenseEntity
     }
 
 }

@@ -20,7 +20,7 @@ public class ExpenseEntity {
     // Other fields
 
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY) // Lazy loading
     @JoinTable(name = "expense_to_expense_type_dict", schema = "expenses",
             joinColumns = @JoinColumn(name = "expense_id"),
             inverseJoinColumns = @JoinColumn(name = "expense_type_id"))

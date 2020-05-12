@@ -36,7 +36,7 @@ public class ReplaceConditionalWithPolymorphism {
         }
 
         private Integer calculateWholesaleDiscount() {
-            return (amount / 1000) + calculateCasualDiscount();
+            return (amount / 1000) + discount;
         }
     }
 

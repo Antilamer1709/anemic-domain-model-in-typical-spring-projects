@@ -37,7 +37,7 @@ public class UserEntity {
     }
 
     private Integer calculateUserDiscount(ExpenseEntity expenseEntity) {
-        Integer discount = 0;
+        Integer discount = 1;
         // calculations
         return discount;
     }

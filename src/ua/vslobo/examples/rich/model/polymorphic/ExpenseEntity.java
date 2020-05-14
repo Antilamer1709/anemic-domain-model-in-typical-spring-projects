@@ -2,14 +2,74 @@ package ua.vslobo.examples.rich.model.polymorphic;
 
 import ua.vslobo.examples.layered.architecture.mock.UserEntity;
 import lombok.Data;
+import ua.vslobo.examples.refactoring.mock.EntityType;
+
 import javax.persistence.*;
 
+// Before
+@Entity
+@Table
+@Data
+class ExpenseEntityBefore {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
+    protected Integer id;
+
+    @Column
+    protected Integer price;
+
+    @Column
+    private Integer discount; // Discount for particular item. Sale specific.
+
+    @Column
+    private Integer amount; // Wholesale specific.
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
+    protected UserEntity user;
+
+    @Enumerated(EnumType.STRING)
+    private EntityType type;
+    // ...
+    // Other fields
+
+
+    public Integer getPrice() {
+        switch (type) {
+            case BASIC:
+                return getBasicPrice();
+            case SALE:
+                return getBasicPrice() * discount;
+            case WHOLESALE:
+                return getBasicPrice() * amount * calculateWholesaleDiscount();
+        }
+        throw new RuntimeException("Should be unreachable");
+    }
+
+    public Integer getBasicPrice() {
+        // get the basic price
+        // long computation
+        return price * user.getUserDiscount();
+    }
+
+    // Wholesale discount depends from amount. The more you buy, the bigger is the discount
+    private Integer calculateWholesaleDiscount() {
+        return amount / 1000;
+    }
+
+}
+
+
+
+// After
 // Contains all shared fields and methods
 @Entity
 @Table
 @Data
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) // We use single table inheritance
-public abstract class ExpenseEntity {
+abstract class ExpenseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
